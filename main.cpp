@@ -21,13 +21,21 @@ int main()
 		std::cin >> mtx[i / m][i % m];
 	}
 
-	transpose(mtx)
-	rmMtx(mtx, m)
 	
+	if (std::cin.fail())
+	{
+		rmMtx(mtx, m);
+		return 1;
+	}
+	
+	transpose(mtx, m, n);
+
 	for (size_t i = 0; i < m * n; ++i) 
 	{
 		std::cin >> mtx[i / m][i % m];
 	}
-
+	
+	rmMtx(mtx, m);
+	return 0;
 }
 	
