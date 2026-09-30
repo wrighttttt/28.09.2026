@@ -1,8 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 
-int ** makeMtx(size_t  m, size_t  n)
-{
+int ** makeMtx(size_t  m, size_t  n) {
         int  ** mtxR = new int *[m];
         try
         {
@@ -20,9 +19,12 @@ int ** makeMtx(size_t  m, size_t  n)
         return mtxR;
 }
 
-int ** transpose(int ** mtx, size_t m, size_t n);
-void rmMtx(int** mtx, size_t m)
-{
+int ** transpose(int ** mtx, size_t m, size_t n) {
+	
+
+
+}
+void rmMtx(int** mtx, size_t m) {
 	for (size_t i = 0; i < m; ++i)
 	{
 		delete [] mtx[i];
@@ -31,8 +33,7 @@ void rmMtx(int** mtx, size_t m)
 	delete []mtx;
 }
 
-void printMtx(int ** mtx, size_t m, size_t n)
-{
+void printMtx(int ** mtx, size_t m, size_t n) {
 	std::cout << mtx[0][0];
         for (size_t i = 0; i < m; ++i) {
                 std::cout << ' ' << mtx[0][i];
@@ -53,8 +54,7 @@ void printMtx(int ** mtx, size_t m, size_t n)
 }
 
 
-int main()
-{
+int main() {
 	size_t m = 0;
 	size_t n = 0;
 	std::cin >> m >> n;
@@ -71,8 +71,7 @@ int main()
 	}
 
 
-	if (std::cin.fail())
-	{
+	if (std::cin.fail()) {
 		rmMtx(mtx, m);
 		return 1;
 	}
