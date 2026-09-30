@@ -1,8 +1,18 @@
 #include <iostream>
 #include <stdexcept>
 
+void rmMtx(int ** mtx, size_t m)
+{
+	for (size_t i = 0; i < m; ++i)
+	{
+		delete [] mtx[i];
+	}
+
+	delete [] mtx;
+
 int ** makeMtx(size_t  m, size_t  n) {
-        int  ** mtxR = new int *[m];
+        int  ** mtxR = new int *[m]();
+
         try
         {
                 for (size_t i = 0; i < m; ++i)
@@ -10,7 +20,7 @@ int ** makeMtx(size_t  m, size_t  n) {
                         mtxR[i] = new int [n];
                 }
         }
-        catch (const std::badalloc & e)
+        catch (const std::bad_alloc &)
         {
                 rmMtx(mtxR, m);
 		throw;
@@ -19,18 +29,19 @@ int ** makeMtx(size_t  m, size_t  n) {
         return mtxR;
 }
 
-int ** transpose(int ** mtx, size_t m, size_t n) {
-	
+int ** transpose(int ** mtx, size_t m, size_t n)
+{
+	int ** res = makeMtx(n, m);
 
-
-}
-void rmMtx(int** mtx, size_t m) {
 	for (size_t i = 0; i < m; ++i)
 	{
-		delete [] mtx[i];
+		for (size_t j = 0; j < n; ++j)
+		{
+			res[j][i] = mtx[i][j];
+		}
 	}
 
-	delete []mtx;
+	return res;
 }
 
 void printMtx(int ** mtx, size_t m, size_t n) {
